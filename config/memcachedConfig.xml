@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+
+ *****  memcached数据库配置文件  *****
+ ***********************************
+-->
+
+<MemCachedConfig>
+
+    <!-- 
+    Enabled : 是否启用memcached内存数据库选项
+    可选值 : true - 启用; false - 停用
+    -->
+    <Enabled>true</Enabled>
+    
+    <!-- 
+    Servers : 可用的memcached服务器列表，各服务器根据weight（负载权重值）实现分布式任务均衡
+    注意 : 各memcached服务器负载权重值的最大公约数最好为1，可在一定程度上简化其内部的负载均衡算法
+    规则 : <Server host="memcached服务器IP或域名" post="memcached服务端口（默认11211）" weight="负载权重值" />
+    -->
+    <Servers>
+        <Server host="localhost" post="11211" weight="1" />
+    </Servers>
+    
+    <!-- 
+    Config : memcached数据库配置选项
+      initConn : 初始连接数
+      minConn : 最小连接数
+      maxConn : 最大连接数
+      maxIdle : 连接最大空闲时间（毫秒）
+      maintSleep : 主线程的维护周期（每隔多少秒维护一次连接池，0表示不启用主线程）
+      socketTO : 读取操作的超时限制（毫秒）
+      socketConnTO : 连接操作的超时限制（毫秒，0表示不限制）
+      compressEnable : 是否启用自动压缩（该参数从java_memcached-release_2.6.1开始不再支持）
+      compressThreshold : 超过指定大小（bytes）的数据都会被压缩（该参数从java_memcached-release_2.6.1开始不再支持）
+    -->
+    <Config>
+        <property name="initConn">5</property>
+        <property name="minConn">5</property>
+        <property name="maxConn">250</property>
+        <property name="maxIdle">21600000</property>
+        <property name="maintSleep">30</property>
+        <property name="socketTO">10000</property>
+        <property name="socketConnTO">0</property>
+        <property name="compressEnable">true</property>
+        <property name="compressThreshold">65536</property>
+    </Config>
+</MemCachedConfig>

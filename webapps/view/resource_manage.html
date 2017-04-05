@@ -1,0 +1,46 @@
+<div class="row">
+	<form class="form-inline">
+		<button type="button" class="btn btn-default" ng-click="toAdd(selectNode)">
+			新增
+		</button>
+	</form>
+</div>
+<div class="row">
+	<div class="col-xs-2">
+		<ul id="cateTree" tree class="ztree" ng-model="selectNode"></ul> 
+	</div>
+	<div class="col-xs-10 table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>课件名称</th>
+					<th>文件名</th>
+					<th>系统文件名</th>
+					<th>图标</th>
+					<th>图标系统文件名</th>
+					<th>排序</th>
+					<th>上传时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="data in infosList">
+					<td>{{data.info_name}}</td>
+					<td>{{data.file_name}}</td>
+					<td>{{data.file_path}}</td>
+					<td>{{data.img_name}}</td>
+					<td>{{data.img_newname}}</td>
+					<td>{{data.sort}}</td>
+					<td>{{data.create_time}}</td>
+					<td>
+						<a href="#" ng-click="toModify(data,selectNode)">修改</a>
+						<a href="#" ng-click="toDelete(data,selectNode)">删除</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div ng-if="infosList.length==0" style="width:100%;text-align:center;">
+			未查询到课件信息
+		</div>
+	</div>
+</div>
